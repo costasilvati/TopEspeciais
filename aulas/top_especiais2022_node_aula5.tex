@@ -18,7 +18,7 @@
   polish
 ]{babel}
 
-\title{Aula 3  - Rotas NodeJs}
+\title{Aula 5  - Arquitetura REST e Rotas NodeJs}
 \subtitle{Tópicos especiais em Sistemas}
 \author{Prof. Juliana Costa Silva - juliana.silva@up.edu.br}
 
@@ -46,7 +46,7 @@
       \begin{itemize}
             \item Criamos um projeto node;
             \item Configuramos a porta do através do arquivo \textbf{index.js};
-            \item Definimos o get de nosso aplicação;
+            \item Definimos o get da nosso aplicação;
        \end{itemize}
      \end{frame}
 %------------------------------------------------------------------------
@@ -78,8 +78,36 @@
 	\end{itemize}
     \end{frame}
 %------------------------------------------------------------------------
+\section{Arquitetura REST}
+\begin{frame}{Arquitetura REST}
+    \begin{exampleblock}{REST (REpresentational State Transfer)}
+        É um estilo arquitetural para sistemas distribuídos; \\
+        Os serviços web que seguem os princípios e as restrições REST são então denominados RESTful Web Services.
+    \end{exampleblock}
+    
+    \begin{exampleblock}{Restrições REST}
+    \begin{itemize}
+        \item O sistema deve seguir o modelo cliente-servidor; não há manutenção de informações de estado por parte do servidor (stateless) \cite{tanembaum2007sd};
+        \item O sistema deve usar uma interface uniforme (padronizada) para acesso aos recursos disponíveis;
+    \end{itemize}
+        
+    \end{exampleblock}
+\end{frame}
+%---------------------------------------------------------
+\subsection{Recursos}
+\begin{frame}{Recursos}
+    \begin{exampleblock}{O que são recursos?}    	           \begin{itemize}
+	    \item O conceito de recurso é fundamental neste modelo de serviço web. 
+	    \item Um recurso é qualquer informação, acessível pelo serviço web, que pode ser endereçada através de um identificador padronizado (URI – \textit{Uniform Resource Identifier}) \cite{tanembaum2007sd}. 
+	    \item Os recursos devem ser representados em um formato textual, sendo o mais popular o JSON (\textit{JavaScript Object Notation}) \cite{nodejs2022api}. 
+	    \item Para manipulação dos recursos, são utilizados os métodos padronizados no protocolo HTTP. 
+	\end{itemize}
+    \end{exampleblock}
+\end{frame}
+
+%------------------------------------------------------
 \section{Rotas}
-    \begin{frame}[label=lists]{Rotas}
+    \begin{frame}{Rotas}
     \begin{exampleblock}{O que são rotas?}
         	\begin{itemize}
 	\item Rotas são as configurações dadas aos caminhos percorridos no seu sistema;
@@ -90,63 +118,52 @@
             %\includegraphics[width=90mm]{resources/aula1_5.png}\\
             %\tiny{\textbf{Fonte:} \cite{ich2021}}
     \end{frame}
+%-------------------------------------------------------
+\begin{frame}{Configurando rota}
+    Vamos configurar a rota
+    \url{http://localhost:3000/gastos}.\\
+    \vspace{0.5cm}
+    Edite a \underline{linha 7} do arquivo \textbf{index.js}, conforme apresentado abaixo, após a edição inicie o servidor node e acesse o endereço configurado.
+	\includegraphics[width=90mm]{resources/aula3_1.png}
+	\\
+    \tiny{\textbf{Fonte:} O autor}
+\end{frame}
 %------------------------------------------------------------------------
-    \begin{frame}[label=lists]{Configurando rota}
-
-% \begin{columns}[onlytextwidth]
-%        \column{.5\textwidth}
-     
-         Vamos configurar a rota  \url{http://localhost:3000/gastos}.\\
-          \vspace{0.5cm}
-          Edite a \underline{linha 7} do arquivo \textbf{index.js}, conforme apresentado abaixo, após a edição inicie o servidor node e acesse o endereço configurado.
-%
-%        \column{.5\textwidth}
-
-	            \includegraphics[width=110mm]{resources/aula3_1.png}\\
-            \tiny{\textbf{Fonte:} O autor}
-
-%      \end{columns}
-    \end{frame}
-
- %------------------------------------------------------------------------
-    \begin{frame}[label=lists]{package.json}
+\begin{frame}{package.json}
 	O arquivo \textbf{package.json} contem todas as informações do nosso projeto, desde o nome, sua versão e scripts que podem ser executados até novos pacotes que poderemos instalar.\\
 	\begin{exampleblock}{Editando package.json}
 	\begin{itemize}
 	\item Edite a propriedade scripts do arquivo (linha 6);
 	\item Inclua um novo scrip, o start, e então poderá inserir o comando que quiser, como início do seu projeto. 
-
 	\end{itemize}
 	\end{exampleblock}
-
-    \end{frame}
-     %------------------------------------------------------------------------
-    \begin{frame}[label=lists]{package.json}
-		\begin{exampleblock}{Editando package.json}
+\end{frame}
+%-------------------------------------------------------
+\begin{frame}{package.json}
+	\begin{exampleblock}{Editando package.json}
 	\begin{itemize}
 	\item Ao invés de obrigarmos quem está acessando o servidor a escrever node index.js e diretório de instalação, padronizaremos que o arquivo de start realizará o comando \alert{node index.js}.
 	\end{itemize}
 	\end{exampleblock}
 	 \includegraphics[width=80mm]{resources/aula3_2.png}\\
-            \tiny{\textbf{Fonte:} O autor}
-
-    \end{frame}
+    \tiny{\textbf{Fonte:} O autor}
+\end{frame}
    
  %------------------------------------------------------------------------
-    \begin{frame}[label=lists]{package.json}
+    \begin{frame}{package.json}
 		\begin{exampleblock}{Editando package.json}
 	\begin{itemize}
-	\item start realizará o comando \alert{node index.js}.
+	\item Edite o start para realizar o comando \alert{node index.js}.
 	\item O arquivo deve ficar como abaixo;
 	\end{itemize}
 	\end{exampleblock}
-	 \includegraphics[width=80mm]{resources/aula3_3.png}\\
-            \tiny{\textbf{Fonte:} O autor}
-
-    \end{frame}
+	\centering
+	 \includegraphics[width=70mm]{resources/aula3_3.png}\\
+    \tiny{\textbf{Fonte:} O autor}
+\end{frame}
    
-    %------------------------------------------------------------------------
-    \begin{frame}[label=lists]{package.json}
+%------------------------------------------------------------------------
+\begin{frame}{package.json}
 		\begin{exampleblock}{Iniciando o projeto com npm}
 	\begin{itemize}
 	\item Agora seu projeto será iniciado no servidor através do comando
@@ -157,7 +174,7 @@
  %------------------------------------------------------------------------
  \section{nodemon}
 \section{Ajustes no projeto}
-    \begin{frame}[label=proof]{Reiniciar o servidor node}
+    \begin{frame}{Reiniciar o servidor node}
 	\begin{itemize}
 	\item Para cada alteração que fazemos no projeto, precisamos para o servidor node com \alert{Ctrl + C};
 	\item Iniciar o servidor novamente com o comando \alert{node index.js} para que ele carregue o projeto atualizado;
@@ -183,15 +200,14 @@
     \end{frame}
    
 %------------------------------------------------------------------------
-% \subsection{Referências}
-%    \begin{frame}{Referências}%[allowframebreaks]
-%\frametitle{Referências}
-%\small
-%\begin{center}
-%\tiny
-%\bibliographystyle{apalike}
-%\bibliography{./ref_aula}
-%\end{center}
-%\end{frame}
+\section{Referências}
+    \begin{frame}{Referências}%[allowframebreaks]
+\small
+\begin{center}
+\tiny
+\bibliographystyle{apalike}
+\bibliography{ref_aula}
+\end{center}
+\end{frame}
   
 \end{document}
